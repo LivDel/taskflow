@@ -106,7 +106,7 @@ export function createApp({
 
   // Durcissement (Jour 5, OWASP A05 « mauvaise configuration ») : ne pas annoncer
   // la technologie utilisée (en-tête X-Powered-By: Express), signalé par ZAP.
-  app.disable('x-powered-by');
+  app.disable('x-powered-by'); // nosemgrep: ajinabraham.njsscan.good.good_helmet_checks.helmet_header_x_powered_by
 
   // /metrics est déclarée AVANT le logger et le middleware de mesure : les
   // collectes de Prometheus (toutes les 15 s) ne polluent ni les logs ni les
