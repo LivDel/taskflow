@@ -1,0 +1,25 @@
+# Configuration gitleaks du dépôt TaskFlow (lue automatiquement à la racine,
+# en pre-commit comme dans security.yml).
+#
+# On GARDE toutes les règles par défaut (useDefault) et on ajoute seulement des
+# exceptions ÉTROITES et JUSTIFIÉES (chacune est reprise dans docs/SECURITE.md).
+# Règle d'or : une exception porte sur un chemin ou une valeur précise, jamais sur
+# une règle entière ; un vrai secret ne s'ignore pas, il se révoque.
+
+title = "gitleaks TaskFlow"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Valeurs d'exemple et de dev, publiques par construction (pas des secrets)"
+paths = [
+  '''(^|/)\.env\.example$''',
+  '''(^|/)package-lock\.json$''',
+]
+
+[[allowlists]]
+description = "Mot de passe Postgres jetable des tests et du CI (base éphémère, jamais exposée)"
+regexes = [
+  '''postgres://taskflow:taskflow@''',
+]
