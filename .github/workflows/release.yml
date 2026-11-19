@@ -249,7 +249,7 @@ jobs:
 
       - name: Smoke test
         working-directory: .
-        run: ./deploy/smoke-test.sh "http://host.docker.internal:${FRONT_PORT}/health" "$TAG"
+        run: bash ./deploy/smoke-test.sh "http://host.docker.internal:${FRONT_PORT}/health" "$TAG"
 
       - name: Résumé
         if: always()
